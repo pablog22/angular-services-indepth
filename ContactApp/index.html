@@ -10,13 +10,12 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="app.js"></script>
+    <script src="appConfig.service.js"></script>
+    <script src="appname.service.js"></script>
+    <script src="contact.controller.js"></script>
 </head>
 
 <body>
-    
-    <div ng-controller="HeaderCtrl as head">
-        <h1>{{head.appTittle}}</h1>
-    </div>
     
     <div class="container" ng-controller="ContactCtrl as ctrl">
         <div class="row">
@@ -54,10 +53,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div ng-controller="FooterCtrl as foot">
-        <h1>{{foot.appTittle}}</h1>
     </div>
 
 </body>

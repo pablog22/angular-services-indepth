@@ -17,13 +17,24 @@ function prepareAppConfig(AppNameSvc) {
     return value;
 };
 
+function AppConfig(AppNameSvc) {
+    //var value = {};
+
+    this.name = AppNameSvc;
+    this.author = "Pablo";
+    this.builtDate = new Date().toDateString();
+
+    //return value;
+};
+
 app.value("AppDataSvc", prepareAppConfig());
 
 app.value("LoggingSvc", function(){
     console.log("Hello");
 });
 
-app.factory("AppDataFactorySvc", prepareAppConfig);
+app.factory("AppDataFactorySvc", prepareAppConfig);  //prepareAppConfig()
+app.service("AppDataServiceSvc", AppConfig); // new AppConfig()
 
 function ContactCtrl() {
   this.contacts = [
@@ -406,8 +417,8 @@ function ContactCtrl() {
   }
 }
 
-function HeaderCtrl(AppDataFactorySvc){
-    this.appTittle = AppDataFactorySvc.name;
+function HeaderCtrl(AppDataServiceSvc){
+    this.appTittle = AppDataServiceSvc.name;
 }
 
 function FooterCtrl(AppDataFactorySvc){

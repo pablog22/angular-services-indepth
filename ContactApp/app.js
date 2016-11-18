@@ -5,16 +5,23 @@ app.controller("ContactCtrl", ContactCtrl);
 app.controller("HeaderCtrl", HeaderCtrl);
 app.controller("FooterCtrl", FooterCtrl);
 
-app.constant("AppDataSvc", {
-    "name": "Contact App",
-    "author": "Pablo",
-    "company": "pg22",
-    version: 1
-});
+function prepareAppConfig() {
+    var value = {};
+
+    value.name = "Contact App";
+    value.author = "Pablo";
+    value.builtDate = new Date().toDateString();
+
+    return value;
+};
+
+app.value("AppDataSvc", prepareAppConfig());
 
 app.value("LoggingSvc", function(){
     console.log("Hello");
 });
+
+app.factory("AppDataFactorySvc", prepareAppConfig);
 
 function ContactCtrl() {
   this.contacts = [
@@ -397,9 +404,8 @@ function ContactCtrl() {
   }
 }
 
-function HeaderCtrl(AppDataSvc, LoggingSvc){
-    this.appTittle = AppDataSvc.name;
-    LoggingSvc();
+function HeaderCtrl(AppDataSvc, LoggingSvc, AppDataFactorySvc){
+    this.appTittle = AppDataFactorySvc.name;
 }
 
 function FooterCtrl(AppDataSvc, LoggingSvc){

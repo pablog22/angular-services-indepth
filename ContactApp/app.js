@@ -5,10 +5,12 @@ app.controller("ContactCtrl", ContactCtrl);
 app.controller("HeaderCtrl", HeaderCtrl);
 app.controller("FooterCtrl", FooterCtrl);
 
-function prepareAppConfig() {
+app.value("AppNameSvc", "Contact App");
+
+function prepareAppConfig(AppNameSvc) {
     var value = {};
 
-    value.name = "Contact App";
+    value.name = AppNameSvc;
     value.author = "Pablo";
     value.builtDate = new Date().toDateString();
 
@@ -404,11 +406,11 @@ function ContactCtrl() {
   }
 }
 
-function HeaderCtrl(AppDataSvc, LoggingSvc, AppDataFactorySvc){
+function HeaderCtrl(AppDataFactorySvc){
     this.appTittle = AppDataFactorySvc.name;
 }
 
-function FooterCtrl(AppDataSvc, LoggingSvc){
-    this.appTittle = AppDataSvc.name;
-    LoggingSvc();
+function FooterCtrl(AppDataFactorySvc){
+    this.appTittle = AppDataFactorySvc.name;
+    this.builtDate = AppDataFactorySvc.builtDate;
 }

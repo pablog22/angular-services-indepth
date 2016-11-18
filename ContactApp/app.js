@@ -5,7 +5,16 @@ app.controller("ContactCtrl", ContactCtrl);
 app.controller("HeaderCtrl", HeaderCtrl);
 app.controller("FooterCtrl", FooterCtrl);
 
-app.value("AppNameSvc", "Contact App");
+app.constant("AppDataSvc", {
+    "name": "Contact App",
+    "author": "Pablo",
+    "company": "pg22",
+    version: 1
+});
+
+app.value("LoggingSvc", function(){
+    console.log("Hello");
+});
 
 function ContactCtrl() {
   this.contacts = [
@@ -388,10 +397,12 @@ function ContactCtrl() {
   }
 }
 
-function HeaderCtrl(AppNameSvc){
-    this.appTittle = AppNameSvc;
+function HeaderCtrl(AppDataSvc, LoggingSvc){
+    this.appTittle = AppDataSvc.name;
+    LoggingSvc();
 }
 
-function FooterCtrl(AppNameSvc){
-    this.appTittle = AppNameSvc;
+function FooterCtrl(AppDataSvc, LoggingSvc){
+    this.appTittle = AppDataSvc.name;
+    LoggingSvc();
 }

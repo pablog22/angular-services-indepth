@@ -4,7 +4,7 @@
     app.controller("ContactCtrl", ContactCtrl);
 
     function ContactCtrl(ContactDataServiceSvc) {
-        this.contacts = ContactDataServiceSvc.data;
+        this.contacts = ContactDataServiceSvc.contacts;
 
         this.selectedContact = this.contacts[0];
 

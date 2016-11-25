@@ -2,7 +2,7 @@
     var app = angular.module("ContactApp");
 
     function ContactData() {
-        this.data = [
+        this.contacts = [
             {
                 "gender": "male",
                 "name": {

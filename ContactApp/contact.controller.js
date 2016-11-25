@@ -4,9 +4,13 @@
     app.controller("ContactCtrl", ContactCtrl);
 
     function ContactCtrl(ContactDataServiceSvc) {
-        this.contacts = ContactDataServiceSvc.contacts;
+        var self = this;
 
-        this.selectedContact = this.contacts[0];
+        ContactDataServiceSvc.getContacts()
+        .then(function(data){
+            self.contacts = data;
+            self.selectedContact = self.contacts[0] // optional (I added this line)
+        });
 
         this.selectContact = function (selected) {
             this.selectedContact = this.contacts[selected];

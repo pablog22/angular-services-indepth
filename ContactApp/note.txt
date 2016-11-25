@@ -1,0 +1,5 @@
+To start http-server:
+http-server
+
+For moro info:
+https://www.npmjs.com/package/http-server

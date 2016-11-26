@@ -5,6 +5,7 @@
 
     function ContactCtrl(ContactDataServiceSvc) {
         var self = this;
+        self.editMode = false;
 
         ContactDataServiceSvc.getContacts()
         .then(function(data){
@@ -14,6 +15,16 @@
 
         this.selectContact = function (selected) {
             this.selectedContact = this.contacts[selected];
+        }
+
+        this.toggleEditMode = function() {
+            this.editMode = !this.editMode;
+        }
+
+        this.saveUser = function() {
+            var userData = this.selectedContact;
+            this.toggleEditMode();
+            ContactDataServiceSvc.saveUser(userData);
         }
     }
 })();

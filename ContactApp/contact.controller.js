@@ -8,23 +8,34 @@
         self.editMode = false;
 
         ContactDataServiceSvc.getContacts()
-        .then(function(data){
-            self.contacts = data;
-            self.selectedContact = self.contacts[0] // optional (I added this line)
-        });
+            .then(function (data) {
+                self.contacts = data;
+                self.selectedContact = self.contacts[0] // optional (I added this line)
+            });
 
         this.selectContact = function (selected) {
             this.selectedContact = this.contacts[selected];
+            self.successMessage = undefined;
+            self.errorMessage = undefined;
         }
 
-        this.toggleEditMode = function() {
+        this.toggleEditMode = function () {
             this.editMode = !this.editMode;
         }
 
-        this.saveUser = function() {
+        this.saveUser = function () {
             var userData = this.selectedContact;
             this.toggleEditMode();
-            ContactDataServiceSvc.saveUser(userData);
+            ContactDataServiceSvc.saveUser(userData)
+                .then(
+                function () {
+                    self.successMessage = "Data successfully updated";
+                },
+                function () {
+                    self.errorMessage = "There was an error. Please try again.";
+                })
+            // The then() above receives two functions, the first one what to do un a success,
+            // the second one is wha to do in case of an error.
         }
     }
 })();

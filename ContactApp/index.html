@@ -25,6 +25,7 @@
                     {{contact.name.first + " " + contact.name.last}}
                 </li>
             </ul>
+            <button ng-click="ctrl.addContact()">Add</button>
         </div>
         <div class="row">
             <div class="col-sm-6">
@@ -37,11 +38,21 @@
                         </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">{{ctrl.selectedContact.name.first + " " + ctrl.selectedContact.name.last}}</h4>
-                        
                         <button ng-hide="ctrl.editMode" ng-click="ctrl.toggleEditMode()">Edit</button>
                         <button ng-show="ctrl.editMode" ng-click="ctrl.saveUser()">Save</button>
-                        
+                        <div>
+                            <p>
+                                <span>First name:</span>
+                                <span ng-hide="ctrl.editMode">{{ctrl.selectedContact.name.first}}</span>
+                                <input type="text" ng-show="ctrl.editMode" ng-model="ctrl.selectedContact.name.first">
+                            </p>
+                            <p>
+                                <span>Last name:</span>
+                                <span ng-hide="ctrl.editMode">{{ctrl.selectedContact.name.last}}</span>
+                                <input type="text" ng-show="ctrl.editMode" ng-model="ctrl.selectedContact.name.last">
+                            </p>
+                        </div>
+
                         <div>
                             <p>
                                 <h6>Location</h6>
